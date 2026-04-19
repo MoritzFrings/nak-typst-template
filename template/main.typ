@@ -21,6 +21,7 @@
 
 // TODO remove this with typst 0.15
 #{
+	pagebreak(weak: true)
   show link: it => text(blue, it)
   set par(spacing: 1em)
   set text(size: 11pt)

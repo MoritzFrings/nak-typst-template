@@ -2,7 +2,12 @@
 
 #let needsCite = strong(text(red, "needsCite"))
 
-#let todo(content) = block(strong(text(blue, "TODO: " + content)))
+#let todo(content) = {
+  if content == "empty" {
+    content += "todo"
+  }
+  block(strong(text(purple, content)))
+}
 
 #let clickable_link(url, display: none) = if display == none {
   link(url, underline(text(blue, url)))

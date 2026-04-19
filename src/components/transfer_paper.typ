@@ -68,6 +68,9 @@
     in-outline.update(false)
   }
 
+  // Allow pagebreak in figures (https://github.com/typst/typst/issues/977#issuecomment-1758628037)
+  show figure.where(kind: raw): set block(breakable: true)
+
   // Document config
   set text(
     size: font_size,
@@ -105,17 +108,20 @@
   set page(numbering: "I")
   counter(page).update(1)
 
-  // Table of Contents
-  toc(heading_texts.contents)
-
-  // List of Figures
-  list_of(heading_texts.figures, image)
-
-  // List of Tables
-  list_of(heading_texts.tables, table)
-
-  // List of Listings
-  list_of(heading_texts.listings, raw)
+  context {
+    // List of Figures (if existing)
+    if query(figure.where(kind: image)).len() > 0 {
+      list_of(heading_texts.figures, image)
+    }
+    // List of Tables (if existing)
+    if query(figure.where(kind: table)).len() > 0 {
+      list_of(heading_texts.tables, table)
+    }
+    if query(figure.where(kind: raw)).len() > 0 {
+      // List of Listings (if existing)
+      list_of(heading_texts.listings, raw)
+    }
+  }
 
   // List of Acronyms
   register-glossary(abbreviation_list)
@@ -131,13 +137,7 @@
   counter(page).update(1)
   set heading(numbering: "1.1")
   set par(justify: true)
-  {
-    show heading.where(level: 1): it => {
-      pagebreak(weak: true)
-      it
-    }
-    body
-  }
+  body
 
   // References
   set page(numbering: "I")
@@ -147,6 +147,7 @@
   }
   set heading(numbering: none)
   // TODO add this with typst 0.15 (new path type)
+  // pagebreak(weak: true)
   // {
   //   show link: it => text(blue, it)
   //   set par(spacing: 1em)
