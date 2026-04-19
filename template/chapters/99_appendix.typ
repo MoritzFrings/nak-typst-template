@@ -1,4 +1,5 @@
-#import "../components/code.typ": codeblock
+// TODO change this when releasing to #import "@preview/nordakademie-templates"
+#import "../../src/components/code.typ": codeblock
 
 == Code snippet
   #figure(

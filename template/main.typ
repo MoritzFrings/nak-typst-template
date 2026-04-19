@@ -1,5 +1,5 @@
-// Imports
-#import "components/transfer_paper.typ": transfer_paper
+// TODO change this when releasing to #import "@preview/nordakademie-templates"
+#import "../src/components/transfer_paper.typ": transfer_paper
 
 #show: transfer_paper.with(
 	language: "en",

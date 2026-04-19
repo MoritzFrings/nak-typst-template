@@ -3,7 +3,6 @@
 #import "../pages/outline.typ": toc, list_of
 #import "../pages/cover.typ": cover
 #import "../dependencies.typ": zebraw, zebraw-themes, make-glossary, print-glossary, register-glossary
-#import "../abbreviations.typ": abbreviation_list
 
 #let transfer_paper(
   language: "en",
@@ -20,6 +19,7 @@
     margin_bottom: 25pt,
     font_size: 21pt,
   ),
+  abbreviation_list,
   number,
   matnr,
   topic,
