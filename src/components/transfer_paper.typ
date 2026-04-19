@@ -4,6 +4,7 @@
 #import "../pages/cover.typ": cover
 #import "../dependencies.typ": make-glossary, print-glossary, register-glossary, zebraw, zebraw-themes
 #import "../pages/confidentiality_clause.typ": confidentiality_clause
+#import "formatting.typ": todo
 
 #let transfer_paper(
   language: "en",
@@ -13,41 +14,23 @@
   par_spacing: 1.75em,
   list_spacing: 1em,
   list_indent: 1.5em,
-  bibliography_path: "../res/literature.bib",
   citation_style: "ieee",
   headings: (
     margin_top: 30pt,
     margin_bottom: 25pt,
     font_size: 21pt,
   ),
-  number,
-  matnr,
-  topic,
-  course,
-  company,
-  location,
-  // abbreviation_list,
+  number: todo("1"),
+  matnr: todo("12345"),
+  topic: todo("topic"),
+  course: todo("course"),
+  company: todo("company"),
+  signing_location: todo("location"),
+  abbreviation_list: (key: "cpu"),
+  bibliography_content: none,
   appendix_content: none,
   body,
 ) = {
-  // TODO remove this with typst 0.15 (new path type)
-  let abbreviation_list = (
-    (
-      key: "cpu",
-      short: "CPU",
-      long: "Central Processing Unit",
-    ),
-    (
-      key: "oop",
-      short: "OOP",
-      long: "Object Oriented Programming",
-    ),
-    (
-      key: "cfg",
-      short: "CFG",
-      long: "Control Flow Graph",
-    ),
-  )
   let zebra-theme = zebraw-themes.zebra
 
   // Hanging indent can slow down preview performance.
@@ -102,7 +85,7 @@
     course,
   )
 
-  confidentiality_clause(language, number, company, location)
+  confidentiality_clause(language, number, company, signing_location)
 
   // Start page numbering from here
   set page(numbering: "I")
@@ -146,19 +129,18 @@
     counter(page).update(old_page_number + 1)
   }
   set heading(numbering: none)
-  // TODO add this with typst 0.15 (new path type)
-  // pagebreak(weak: true)
-  // {
-  //   show link: it => text(blue, it)
-  //   set par(spacing: 1em)
-  //   set text(size: 11pt)
-  //   bibliography(
-  //     bibliography_path,
-  //     title: heading_texts.references,
-  //     style: citation_style,
-  //   )
-  //   pagebreak(weak: true)
-  // }
+  pagebreak(weak: true)
+  if bibliography_content != none {
+    show link: it => text(blue, it)
+    set par(spacing: 1em)
+    set text(size: 11pt)
+    bibliography(
+      bibliography_content,
+      title: heading_texts.references,
+      style: citation_style,
+    )
+    pagebreak(weak: true)
+  }
 
   // Appendix
   if (appendix_content != none) {

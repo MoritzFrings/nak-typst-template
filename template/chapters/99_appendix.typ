@@ -1,10 +1,10 @@
-#import "@preview/nordakademie-templates:0.1.0": codeblock
+#import "@preview/nordakademie-templates:0.1.0": code
 
 == Code snippet
-  // #figure(
-  //   codeblock("../res/rust_example.rs", "rust"),
-  //   caption: [Dummy Rust code to show the code blocks]
-  // ) <code-snippet>
+  #figure(
+    code(read("../res/rust_example.rs"), "rust"),
+    caption: [Dummy Rust code to show the code blocks]
+  ) <code-snippet>
 
   == Text
   #lorem(50)

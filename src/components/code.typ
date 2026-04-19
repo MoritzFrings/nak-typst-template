@@ -1,5 +1,5 @@
 // Importing code blocks
-#let codeblock(source, lang) = {
+#let code(content, lang) = {
   set text(size: 10pt)
-  raw(read(source), block: true, lang: lang)
+  raw(content, block: true, lang: lang)
 }
