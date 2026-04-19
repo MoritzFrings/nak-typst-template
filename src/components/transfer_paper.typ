@@ -3,6 +3,7 @@
 #import "../pages/outline.typ": list_of, toc
 #import "../pages/cover.typ": cover
 #import "../dependencies.typ": make-glossary, print-glossary, register-glossary, zebraw, zebraw-themes
+#import "../pages/confidentiality_clause.typ": confidentiality_clause
 
 #let transfer_paper(
   language: "en",
@@ -23,6 +24,8 @@
   matnr,
   topic,
   course,
+  company,
+  location,
   // abbreviation_list,
   appendix_content: none,
   body,
@@ -43,7 +46,7 @@
       short: "CFG",
       long: "Control Flow Graph",
     ),
-  ) 
+  )
   // initialize extensions
   show: make-glossary // Glossary
   show: zebraw.with(..zebraw-themes.zebra) // Code listings
@@ -78,6 +81,8 @@
     topic,
     course,
   )
+
+  confidentiality_clause(language, number, company, location)
 
   // Start page numbering from here
   set page(numbering: "I")
@@ -124,11 +129,11 @@
     counter(page).update(old_page_number + 1)
   }
   set heading(numbering: none)
+  // TODO add this with typst 0.15 (new path type)
   // {
   //   show link: it => text(blue, it)
   //   set par(spacing: 1em)
   //   set text(size: 11pt)
-  //   // TODO add this when path type is added
   //   bibliography(
   //     bibliography_path,
   //     title: heading_texts.references,
