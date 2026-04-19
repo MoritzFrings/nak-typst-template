@@ -9,3 +9,7 @@
 } else {
   link(url, underline(text(blue, display)))
 }
+
+#let flex-caption(short: "", long: "") = context if state("in-outline", true).get() {
+  short
+} else { long }

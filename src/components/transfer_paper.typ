@@ -30,6 +30,7 @@
   appendix_content: none,
   body,
 ) = {
+  // TODO remove this with typst 0.15 (new path type)
   let abbreviation_list = (
     (
       key: "cpu",
@@ -47,9 +48,25 @@
       long: "Control Flow Graph",
     ),
   )
+  let zebra-theme = zebraw-themes.zebra
+
+  // Hanging indent can slow down preview performance.
+  // On performance issues it is recommended to disable this
+  zebra-theme.insert("hanging-indent", true)
+
   // initialize extensions
   show: make-glossary // Glossary
   show: zebraw.with(..zebraw-themes.zebra) // Code listings
+
+  // adds functionality to display flex-caption (see code.typ)
+  // short attribute in outline but long version in figure caption
+  // (see https://github.com/typst/typst/issues/1295#issuecomment-2749005636)
+  let in-outline = state("in-outline", false)
+  show outline: it => {
+    in-outline.update(true)
+    it
+    in-outline.update(false)
+  }
 
   // Document config
   set text(
