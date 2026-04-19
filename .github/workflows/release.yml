@@ -1,3 +1,6 @@
+# content from https://github.com/typst-community/typst-package-template
+# licensed under The Unlicense
+
 name: Package, release, publish
 on:
   push:

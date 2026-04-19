@@ -1,3 +1,5 @@
+# content from https://github.com/typst-community/typst-package-template
+# licensed under The Unlicense
 root := justfile_directory()
 
 export TYPST_ROOT := root

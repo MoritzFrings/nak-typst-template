@@ -1,8 +1,8 @@
 #import "header.typ": header
 #import "translations.typ": english_heading_texts, german_heading_texts
-#import "../pages/outline.typ": toc, list_of
+#import "../pages/outline.typ": list_of, toc
 #import "../pages/cover.typ": cover
-#import "../dependencies.typ": zebraw, zebraw-themes, make-glossary, print-glossary, register-glossary
+#import "../dependencies.typ": make-glossary, print-glossary, register-glossary, zebraw, zebraw-themes
 
 #let transfer_paper(
   language: "en",
@@ -19,14 +19,31 @@
     margin_bottom: 25pt,
     font_size: 21pt,
   ),
-  abbreviation_list,
   number,
   matnr,
   topic,
   course,
+  // abbreviation_list,
   appendix_content: none,
   body,
 ) = {
+  let abbreviation_list = (
+    (
+      key: "cpu",
+      short: "CPU",
+      long: "Central Processing Unit",
+    ),
+    (
+      key: "oop",
+      short: "OOP",
+      long: "Object Oriented Programming",
+    ),
+    (
+      key: "cfg",
+      short: "CFG",
+      long: "Control Flow Graph",
+    ),
+  ) 
   // initialize extensions
   show: make-glossary // Glossary
   show: zebraw.with(..zebraw-themes.zebra) // Code listings
@@ -34,7 +51,7 @@
   // Document config
   set text(
     size: font_size,
-    lang: language
+    lang: language,
   )
   set page(
     header: header(language),
@@ -107,17 +124,18 @@
     counter(page).update(old_page_number + 1)
   }
   set heading(numbering: none)
-  {
-    show link: it => text(blue, it)
-    set par(spacing: 1em)
-    set text(size: 11pt)
-    bibliography(
-      bibliography_path,
-      title: heading_texts.references,
-      style: citation_style,
-    )
-    pagebreak(weak: true)
-  }
+  // {
+  //   show link: it => text(blue, it)
+  //   set par(spacing: 1em)
+  //   set text(size: 11pt)
+  //   // TODO add this when path type is added
+  //   bibliography(
+  //     bibliography_path,
+  //     title: heading_texts.references,
+  //     style: citation_style,
+  //   )
+  //   pagebreak(weak: true)
+  // }
 
   // Appendix
   if (appendix_content != none) {
@@ -126,5 +144,4 @@
     heading(heading_texts.appendix)
     appendix_content
   }
-  
 }

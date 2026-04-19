@@ -1,3 +1,6 @@
+# content from https://github.com/typst-community/typst-package-template
+# licensed under The Unlicense
+
 # this is not a "standard" ignore file, it's specific to this template's `scripts/package` script
 # list any files here that should not be uploaded to Universe when releasing this package
 

@@ -1,4 +1,4 @@
-#import "../components/tables.typ": table_style_1, table_style_2, table_style_3, table_style_3_bottom_cell
+#import "@preview/nordakademie-templates:0.1.0": table_style_1, table_style_2, table_style_3, table_style_3_bottom_cell
 
 = Figures
 

@@ -1,9 +1,7 @@
-# for a description of available keys, see https://github.com/typst/packages/?tab=readme-ov-file#package-format
-
 [package]
 name = "nordakademie-templates"
 version = "0.1.0"
-entrypoint = "src/lib.typ"
+entrypoint = "src/main.typ"
 authors = ["Leon Heuer"]
 license = "MIT"
 description = "Provides approved styling for transferpapers submitted @Nordakademie"
@@ -12,7 +10,6 @@ repository = ""
 keywords = ["Nordakademie", "NAK", "transfer paper", "transferleistung", "Elmshorn"]
 categories = []
 disciplines = []
-# compiler = ""
 exclude = [
   ".github",
   "docs",

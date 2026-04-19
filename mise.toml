@@ -1,0 +1,6 @@
+[env]
+# TYPST_ROOT="{{config_root}}"
+
+[tools]
+just = "latest"
+typst = "latest"
