@@ -26,7 +26,8 @@
   course: todo("course"),
   company: todo("company"),
   signing_location: todo("location"),
-  abbreviation_list: (key: "cpu"),
+  abbreviation_list: none,
+  glossary_list: none,
   bibliography_content: none,
   appendix_content: none,
   body,
@@ -110,12 +111,23 @@
   }
 
   // List of Acronyms
+  if type(abbreviation_list) == array {
   register-glossary(abbreviation_list)
   heading(heading_texts.abbreviations)
   print-glossary(
     abbreviation_list,
     disable-back-references: true,
-  )
+    )
+  }
+  // Glossary
+  if type(glossary_list) == array {
+    register-glossary(glossary_list)
+    heading(heading_texts.glossary)
+    print-glossary(
+      glossary_list,
+      disable-back-references: true,
+    )
+  }
   [#[] <end-of-roman-numbering>]
 
   // Main Section

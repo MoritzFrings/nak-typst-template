@@ -6,6 +6,7 @@
   abbreviations: "Abbreviations",
   references: "References",
   appendix: "Appendix",
+  glossary: "Glossary",
 )
 
 #let german_heading_texts = (
@@ -16,4 +17,5 @@
   abbreviations: "Abkürzungen",
   references: "Bibliographie",
   appendix: "Anhang",
+  glossary: "Glossar"
 )
