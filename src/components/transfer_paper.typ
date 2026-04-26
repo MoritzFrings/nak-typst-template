@@ -91,6 +91,9 @@
   set page(numbering: "I")
   counter(page).update(1)
 
+  // Table of Contents
+  toc(heading_texts.contents)
+
   context {
     // List of Figures (if existing)
     if query(figure.where(kind: image)).len() > 0 {
