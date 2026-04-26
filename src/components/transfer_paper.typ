@@ -5,6 +5,7 @@
 #import "../dependencies.typ": make-glossary, print-glossary, register-glossary, zebraw, zebraw-themes
 #import "../pages/confidentiality_clause.typ": confidentiality_clause
 #import "formatting.typ": todo
+#import "glossary_print_helper.typ": custom-print-title
 
 #let transfer_paper(
   language: "en",
@@ -112,11 +113,12 @@
 
   // List of Acronyms
   if type(abbreviation_list) == array {
-  register-glossary(abbreviation_list)
-  heading(heading_texts.abbreviations)
-  print-glossary(
-    abbreviation_list,
-    disable-back-references: true,
+    register-glossary(abbreviation_list)
+    heading(heading_texts.abbreviations)
+    print-glossary(
+      abbreviation_list,
+      disable-back-references: true,
+      user-print-title: custom-print-title
     )
   }
   // Glossary
@@ -126,6 +128,7 @@
     print-glossary(
       glossary_list,
       disable-back-references: true,
+      user-print-title: custom-print-title
     )
   }
   [#[] <end-of-roman-numbering>]
