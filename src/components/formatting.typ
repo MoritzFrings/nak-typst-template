@@ -6,7 +6,7 @@
   if content == "empty" {
     content += "todo"
   }
-  block(strong(text(purple, content)))
+  strong(text(purple, content))
 }
 
 #let clickable_link(url, display: none) = if display == none {
