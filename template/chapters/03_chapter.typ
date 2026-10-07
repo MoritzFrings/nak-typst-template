@@ -6,7 +6,7 @@
 + This will be one more line
 + #lorem(20)
 
-Here is some more dummy text to fill the page Here is some more dummy text to fill the page Here is some more dummy text to fill the page as you can see in /* @code-snippet TODO */. This is a reference to the appendix code listing.
+Here is some more dummy text to fill the page Here is some more dummy text to fill the page Here is some more dummy text to fill the page as you can see in @code-snippet. This is a reference to the appendix code listing.
 
 Oh no, the following statement doesn't have any reliable source yet #needsCite.
 

@@ -1,10 +1,10 @@
 [package]
 name = "nordakademie-templates"
-version = "0.1.0"
+version = "0.2.0"
 entrypoint = "src/main.typ"
 authors = ["Leon Heuer"]
 license = "MIT"
-description = "Provides approved styling for transferpapers submitted @Nordakademie"
+description = "Provides styling for transferpapers submitted @Nordakademie"
 homepage = ""
 repository = ""
 keywords = ["Nordakademie", "NAK", "transfer paper", "transferleistung", "Elmshorn"]

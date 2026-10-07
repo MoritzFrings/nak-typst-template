@@ -36,7 +36,7 @@
 
         #location, #custom-date-format(datetime.today(), pattern: "d MMMM, yyyy", lang: language)]
     } else if language == "de" {
-      text()[vorliegende Hausarbeit mit dem Titel *#texts.work_title Nr. #nr* beinhaltet interne und vertrauliche Informationen des Unternehmens *#company*.\
+      text()[Die vorliegende Hausarbeit mit dem Titel *#texts.work_title Nr. #nr* beinhaltet interne und vertrauliche Informationen des Unternehmens *#company*.\
         Die Weitergabe des Inhalts der Arbeit und eventuell beiliegender Zeichnungen und Daten, im
         Gesamten oder in Teilen, ist grundsätzlich untersagt. Es dürfen keinerlei Kopien oder Abschriften --
         auch in digitaler Form -- gefertigt werden. Ausnahmen bedürfen der schriftlichen Genehmigung des

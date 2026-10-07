@@ -3,10 +3,10 @@
 #let needsCite = strong(text(red, "needsCite"))
 
 #let todo(content) = {
-  if content == "empty" {
+  if content == "" {
     content += "todo"
   }
-  strong(text(purple, content))
+  strong(text(purple, "[" + content + "]"))
 }
 
 #let clickable_link(url, display: none) = if display == none {

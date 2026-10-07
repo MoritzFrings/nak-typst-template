@@ -1,6 +1,6 @@
 #import "header.typ": header
 #import "translations.typ": english_heading_texts, german_heading_texts
-#import "../pages/outline.typ": list_of, toc
+#import "../pages/outline.typ": toc, list_of
 #import "../pages/cover.typ": cover
 #import "../dependencies.typ": make-glossary, print-glossary, register-glossary, zebraw, zebraw-themes
 #import "../pages/confidentiality_clause.typ": confidentiality_clause
@@ -21,6 +21,7 @@
     margin_bottom: 25pt,
     font_size: 21pt,
   ),
+  glossary: function,
   number: todo("1"),
   matnr: todo("12345"),
   topic: todo("topic"),
@@ -33,12 +34,6 @@
   appendix_content: none,
   body,
 ) = {
-  let zebra-theme = zebraw-themes.zebra
-
-  // Hanging indent can slow down preview performance.
-  // On performance issues it is recommended to disable this
-  zebra-theme.insert("hanging-indent", true)
-
   // initialize extensions
   show: make-glossary // Glossary
   show: zebraw.with(..zebraw-themes.zebra) // Code listings
@@ -54,7 +49,8 @@
   }
 
   // Allow pagebreak in figures (https://github.com/typst/typst/issues/977#issuecomment-1758628037)
-  show figure.where(kind: raw): set block(breakable: true)
+  show figure.where(kind: raw).or(figure.where(kind: table)): set block(breakable: true)
+  show figure.where(kind: "code").or(figure.where(kind: table)): set block(breakable: true)
 
   // Document config
   set text(
@@ -93,7 +89,7 @@
   set page(numbering: "I")
   counter(page).update(1)
 
-  // Table of Contents
+  // Table of contents
   toc(heading_texts.contents)
 
   context {
@@ -105,32 +101,20 @@
     if query(figure.where(kind: table)).len() > 0 {
       list_of(heading_texts.tables, table)
     }
-    if query(figure.where(kind: raw)).len() > 0 {
+    if query(figure.where(kind: "code")).len() > 0 {
       // List of Listings (if existing)
-      list_of(heading_texts.listings, raw)
+      list_of(heading_texts.listings, "code")
     }
   }
 
   // List of Acronyms
-  if type(abbreviation_list) == array {
-    register-glossary(abbreviation_list)
-    heading(heading_texts.abbreviations)
-    print-glossary(
-      abbreviation_list,
-      disable-back-references: true,
-      user-print-title: custom-print-title
-    )
-  }
-  // Glossary
-  if type(glossary_list) == array {
-    register-glossary(glossary_list)
-    heading(heading_texts.glossary)
-    print-glossary(
-      glossary_list,
-      disable-back-references: true,
-      user-print-title: custom-print-title
-    )
-  }
+  // register-glossary(abbreviation_list)
+  // heading(heading_texts.abbreviations)
+  // print-glossary(
+  //   abbreviation_list,
+  //   disable-back-references: true,
+  // )
+  glossary()
   [#[] <end-of-roman-numbering>]
 
   // Main Section
@@ -149,7 +133,6 @@
   set heading(numbering: none)
   pagebreak(weak: true)
   if bibliography_content != none {
-    show link: it => text(blue, it)
     set par(spacing: 1em)
     set text(size: 11pt)
     bibliography(
